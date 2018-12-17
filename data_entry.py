@@ -1,14 +1,27 @@
 from pymongo import MongoClient
 import json
 
-''' This script takes a json file and insert the records inside it into a Mongo DB '''
+''' This script takes a json file and insert the records inside it into a Mongo DB but for it to work, it needs a user
+with inside admin DB with privilege of reading and writing on the DB of restaurants'''
 
-username = "accountAdmin01"
-password = "changeMe"
-db_name = "fifi"
-collection_name = "last_test"
-host_IP = "localhost"
-port = 27017  # default port
+default = False
+
+if default:
+    username = "accountAdmin01"
+    password = "changeMe"
+    db_name = "fifi"
+    collection_name = "last_test"
+    host_IP = "localhost"
+    port = 27017  # default port
+else:
+    username = input("please enter the username: ")
+    password = input("please enter the password: ")
+    db_name = input("please enter the db name: ")
+    collection_name = input("please enter the collection name: ")
+    host_IP = input("please enter the host IP: ")
+    port = int(input("please enter the port: "))
+
+
 
 try:
     engine = MongoClient(host=host_IP, port=port, username=username, password=password)
